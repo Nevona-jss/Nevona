@@ -26,6 +26,9 @@ const TechStackSection = () => {
           <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
             {t("tech.title")}
           </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+            {t("tech.subtitle")}
+          </p>
         </motion.div>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">

@@ -152,6 +152,90 @@
   .portfolio-liquid-glass:hover::before {
     opacity: 1;
   }
+
+  /* Animated background for sections below hero */
+  .sections-animated-bg {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+      135deg,
+      hsl(225 25% 6%) 0%,
+      hsl(230 28% 7%) 20%,
+      hsl(225 25% 6%) 40%,
+      hsl(235 22% 7%) 60%,
+      hsl(228 26% 6%) 80%,
+      hsl(225 25% 6%) 100%
+    );
+    background-size: 400% 400%;
+    animation: sections-bg-shift 25s ease infinite;
+  }
+
+  .sections-animated-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 90% 60% at 10% 30%, hsl(250 85% 65% / 0.09) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 90% at 90% 70%, hsl(280 75% 62% / 0.07) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 50% at 50% 100%, hsl(220 90% 62% / 0.06) 0%, transparent 50%);
+    animation: sections-orb-drift 22s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .sections-animated-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 70% 20%, hsl(250 85% 65% / 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse 80% 40% at 20% 80%, hsl(280 75% 62% / 0.06) 0%, transparent 50%);
+    animation: sections-orb-drift-alt 18s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .sections-animated-bg > *:not(.mouse-light) {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Mouse-following light glow — left/top ref orqali yangilanadi, transition yo‘q */
+  .mouse-light {
+    position: absolute;
+    z-index: 0;
+    width:  min(80vw, 720px);
+    height: min(80vw, 720px);
+    left: 0;
+    top: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    background: radial-gradient(
+      circle,
+      hsl(250 85% 65% / 0.12) 0%,
+      hsl(280 75% 62% / 0.06) 35%,
+      transparent 70%
+    );
+    transition: opacity 0.15s ease-out;
+  }
+
+  @keyframes sections-orb-drift {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+    25% { transform: translate(3%, -2%) scale(1.08); opacity: 0.95; }
+    50% { transform: translate(-2%, 3%) scale(0.96); opacity: 1; }
+    75% { transform: translate(-3%, -1%) scale(1.04); opacity: 0.98; }
+  }
+
+  @keyframes sections-orb-drift-alt {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-4%, 2%) scale(1.06); }
+    66% { transform: translate(2%, -3%) scale(0.94); }
+  }
+
+  @keyframes sections-bg-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
 }
 
 @layer utilities {

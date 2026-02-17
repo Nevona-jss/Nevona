@@ -1,6 +1,6 @@
 import { useRef, useState, useCallback } from "react";
-import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ExternalLink, X } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 import coverMes from "@/assets/Cover_MES.jpg";
@@ -29,10 +29,12 @@ const PortfolioCard = ({
   project,
   index,
   t,
+  onOpenModal,
 }: {
   project: (typeof projects)[0];
   index: number;
   t: (key: string) => string;
+  onOpenModal: (project: (typeof projects)[0]) => void;
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [transform, setTransform] = useState({ rotateX: 0, rotateY: 0, mouseX: null as number | null, mouseY: null as number | null });
@@ -71,7 +73,7 @@ const PortfolioCard = ({
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="portfolio-liquid-glass group relative overflow-hidden rounded-2xl border border-border bg-card"
+      className="portfolio-liquid-glass group relative overflow-hidden rounded-2xl border border-border bg-card cursor-pointer"
       style={{
         transform: `perspective(800px) rotateX(${transform.rotateX}deg) rotateY(${transform.rotateY}deg)`,
         transformStyle: "preserve-3d",
@@ -79,9 +81,18 @@ const PortfolioCard = ({
         boxShadow,
       }}
     >
+      {/* Click overlay — 3D transform ostida click ishlamasligi uchun alohida qatlam */}
+      <div
+        className="absolute inset-0 z-10"
+        onClick={() => onOpenModal(project)}
+        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpenModal(project); } }}
+        role="button"
+        tabIndex={0}
+        aria-label={project.name}
+      />
       {/* Cover / gradient header */}
       <div
-        className="relative flex h-44 items-center justify-center overflow-hidden"
+        className="relative flex h-44 items-center justify-center overflow-hidden pointer-events-none"
         style={project.cover ? undefined : { background: `linear-gradient(135deg, hsl(${250 + index * 15}, 50%, 20%), hsl(${220 + index * 15}, 60%, 12%))` }}
       >
         {project.cover && (
@@ -94,10 +105,17 @@ const PortfolioCard = ({
        
       </div>
 
-      <div className="relative p-6">
+      <div className="relative z-20 p-6 pointer-events-none">
         <div className="flex items-start justify-between">
           <h3 className="font-display text-lg font-semibold">{project.name}</h3>
-          <ExternalLink size={16} className="mt-1 text-muted-foreground transition-colors group-hover:text-primary" />
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); onOpenModal(project); }}
+            className="rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-primary/20 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/50 pointer-events-auto"
+            aria-label={t("services.moreInfo")}
+          >
+            <ExternalLink size={16} />
+          </button>
         </div>
         <p className="mt-2 text-sm text-muted-foreground">{t(project.descKey)}</p>
         <div className="mt-4 flex flex-wrap gap-2">
@@ -114,6 +132,7 @@ const PortfolioCard = ({
 
 const PortfolioSection = () => {
   const { t } = useLanguage();
+  const [selectedProject, setSelectedProject] = useState<(typeof projects)[0] | null>(null);
 
   return (
     <section id="portfolio" className="section-padding relative">
@@ -136,10 +155,80 @@ const PortfolioSection = () => {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3" style={{ perspective: "1200px" }}>
           {projects.map((project, i) => (
-            <PortfolioCard key={project.name} project={project} index={i} t={t} />
+            <PortfolioCard
+              key={project.name}
+              project={project}
+              index={i}
+              t={t}
+              onOpenModal={setSelectedProject}
+            />
           ))}
         </div>
       </div>
+
+      <AnimatePresence>
+        {selectedProject && (
+          <>
+            <motion.div
+              key={`overlay-${selectedProject.name}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProject(null)}
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+            />
+            <motion.div
+              key={`modal-${selectedProject.name}`}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
+            >
+              <div
+                className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl border border-border bg-card p-6 shadow-xl md:p-8 pointer-events-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="mb-4 flex items-start justify-between gap-4">
+                  {selectedProject.cover && (
+                    <div className="h-20 w-20 shrink-0 overflow-hidden rounded-xl">
+                      <img src={selectedProject.cover} alt="" className="h-full w-full object-cover" />
+                    </div>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => setSelectedProject(null)}
+                    className="ml-auto rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-primary/20 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/50"
+                    aria-label={t("services.modalClose")}
+                  >
+                    <X size={22} />
+                  </button>
+                </div>
+                <h3 className="font-display text-xl font-semibold">{selectedProject.name}</h3>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  {t(selectedProject.descKey)}
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {selectedProject.tags.map((tag) => (
+                    <span key={tag} className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-6 flex justify-end">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedProject(null)}
+                    className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  >
+                    {t("services.modalClose")}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

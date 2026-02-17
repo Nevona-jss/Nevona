@@ -29,6 +29,9 @@ const ContactSection = () => {
           <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
             {t("contact.title")}
           </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+            {t("contact.subtitle")}
+          </p>
         </motion.div>
 
         <div className="mx-auto grid max-w-5xl gap-12 lg:grid-cols-2 lg:items-stretch">
