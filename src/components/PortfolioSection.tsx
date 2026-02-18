@@ -88,6 +88,7 @@ const PortfolioCard = ({
           <img
             src={project.cover}
             alt=""
+            loading="lazy"
             className="absolute inset-0 h-full w-full object-cover"
           />
         )}
@@ -173,7 +174,7 @@ const PortfolioSection = () => {
                 <div className="mb-4 flex items-start justify-between gap-4">
                   {selectedProject.cover && (
                     <div className="h-20 w-20 shrink-0 overflow-hidden rounded-xl">
-                      <img src={selectedProject.cover} alt="" className="h-full w-full object-cover" />
+                      <img src={selectedProject.cover} alt="" loading="lazy" className="h-full w-full object-cover" />
                     </div>
                   )}
                   <button

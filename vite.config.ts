@@ -18,6 +18,6 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  //github pages settings
-  base: "/Nevona/",
+  // custom domain nevona.uz — root’dan xizmat qiladi
+  base: "/",
 }));
