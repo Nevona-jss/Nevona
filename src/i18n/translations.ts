@@ -11,7 +11,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     "hero.titleHighlight": "Digital Excellence",
     "hero.subtitle": "We combine Korean engineering precision with local market insight to build scalable digital ecosystems, smart factories, and AI-powered platforms that move your business forward.",
     "hero.badge": "Korea Technology · Built for Uzbekistan",
-    "hero.cta": "🚀 Start Your Transformation",
+    "hero.cta": "Start Your Transformation",
     "hero.ctaSecondary": "View Case Studies",
     "hero.stats.team": "Expert Engineers & Strategists",
     "hero.stats.projects": "Successfully Delivered Projects",
