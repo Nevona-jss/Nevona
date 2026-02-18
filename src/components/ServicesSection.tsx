@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Building2, Factory, Globe, Palette, Brain, Bot, Info, X } from "lucide-react";
+import { Building2, Factory, Globe, Palette, Brain, LayoutGrid, Info, X } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const services = [
@@ -9,7 +9,7 @@ const services = [
   { icon: Globe, titleKey: "services.web.title", descKey: "services.web.desc" },
   { icon: Palette, titleKey: "services.uiux.title", descKey: "services.uiux.desc" },
   { icon: Brain, titleKey: "services.ai.title", descKey: "services.ai.desc" },
-  { icon: Bot, titleKey: "services.telegram.title", descKey: "services.telegram.desc" },
+  { icon: LayoutGrid, titleKey: "services.mvp.title", descKey: "services.mvp.desc" },
 ];
 
 const ServicesSection = () => {

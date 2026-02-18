@@ -60,6 +60,10 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
@@ -235,6 +239,42 @@
   @keyframes sections-bg-shift {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
+  }
+
+  .process-right-image-wrap {
+    position: relative;
+    display: block;
+    width: 100%;
+  }
+  .process-right-image-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 18px;
+    background: radial-gradient(
+      circle at center,
+      rgba(0, 0, 0, 0) 55%,
+      hsl(225 25% 6% / 0.85) 100%
+    );
+  }
+  /* Hyuna .rightImage: to'rt tomondan yumshoq chet (linear), rasm maksimal */
+  .process-right-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+    filter: saturate(1.05) contrast(1.05);
+    /* chetlari yumshoq yo'qoladi — gorizontal va vertikal */
+    -webkit-mask-image:
+      linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%),
+      linear-gradient(0deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%),
+      linear-gradient(0deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+    mask-composite: intersect;
   }
 }
 

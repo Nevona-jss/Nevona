@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const techCategories = [
-  { labelKey: "tech.backend", items: ["Java","Spring Boot", "Python", "FastAPI", "Node.js", "Express", "REST API", "PostgreSQL"] },
+  { labelKey: "tech.backend", items: ["Java","Spring Boot", "Python", "FastAPI", "Node.js", "PHP", "Laravel", "PostgreSQL", "MySQL"] },
   { labelKey: "tech.frontend", items: [ "JavaScript", "React", "Next.js", "TypeScript", "Tailwind CSS", "Bootstrap", "Material UI"] },
   { labelKey: "tech.aiiot", items: ["AI Vision", "MLB", "OLP", "PTT", "VDC", "VDR"] },
-  { labelKey: "tech.devops", items: ["Docker", "GitHub Actions", "Nginx", "Linux", "CI/CD"] },
+  { labelKey: "tech.devops", items: ["Docker", "GitHub Actions", "Nginx", "Linux", "CI/CD", "Docker", "Kubernetes"] },
 ];
 
 const TechStackSection = () => {
