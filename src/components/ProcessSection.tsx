@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { ArrowDown } from "lucide-react";
-import manufacturingImage from "@/assets/manifacturing.png";
+import manufacturingImage from "@/assets/manifacturing.jpg";
 
 const STEPS = 6;
 
