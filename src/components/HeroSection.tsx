@@ -5,7 +5,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { useCountUp } from "@/hooks/useCountUp";
 import ParticleCanvas from "@/components/ParticleCanvas";
 import GlobeCanvas from "@/components/GlobeCanvas";
-import heroBg from "@/assets/hero-bg.jpg";
+const heroBg = "/hero-bg.webp";
 
 const StatCounter = ({ end, suffix, label, duration = 2200 }: { end: number; suffix: string; label: string; duration?: number }) => {
   const { ref, display } = useCountUp({ end, suffix, duration });
@@ -31,7 +31,7 @@ const HeroSection = () => {
     <section id="home" className="relative flex min-h-screen items-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <img src={heroBg} alt="" className="h-full w-full object-cover opacity-40" />
+        <img src={heroBg} alt="" fetchPriority="high" decoding="sync" className="h-full w-full object-cover opacity-40" />
         <div className="absolute inset-0 bg-background/50" />
       </div>
 
