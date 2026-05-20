@@ -2,9 +2,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { ArrowDown } from "lucide-react";
-import mesScreen1 from "@/assets/mes-screen-1.png";
-import mesScreen2 from "@/assets/mes-screen-2.png";
-import mesScreen3 from "@/assets/mes-screen-3.png";
+import mesScreen1 from "@/assets/mes-screen-1.webp";
+import mesScreen2 from "@/assets/mes-screen-2.webp";
+import mesScreen3 from "@/assets/mes-screen-3.webp";
 
 const STEPS = 6;
 const SLIDES = [mesScreen1, mesScreen2, mesScreen3];
@@ -56,6 +56,8 @@ const ProcessCarousel = () => {
             <img
               src={slide}
               alt={`MES screen ${i + 1}`}
+              loading="lazy"
+              decoding="async"
               className="w-full h-auto rounded-xl pointer-events-none"
               draggable={false}
             />

@@ -1,12 +1,13 @@
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import ServicesSection from "@/components/ServicesSection";
-import PortfolioSection from "@/components/PortfolioSection";
-import TechStackSection from "@/components/TechStackSection";
-import ProcessSection from "@/components/ProcessSection";
-import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+
+const ServicesSection = lazy(() => import("@/components/ServicesSection"));
+const PortfolioSection = lazy(() => import("@/components/PortfolioSection"));
+const TechStackSection = lazy(() => import("@/components/TechStackSection"));
+const ProcessSection = lazy(() => import("@/components/ProcessSection"));
+const ContactSection = lazy(() => import("@/components/ContactSection"));
 
 const Index = () => {
   const sectionsRef = useRef<HTMLDivElement>(null);
@@ -50,11 +51,13 @@ const Index = () => {
           style={{ opacity: visible ? 1 : 0 }}
           aria-hidden
         />
-        <ServicesSection />
-        <PortfolioSection />
-        <TechStackSection />
-        <ProcessSection />
-        <ContactSection />
+        <Suspense fallback={null}>
+          <ServicesSection />
+          <PortfolioSection />
+          <TechStackSection />
+          <ProcessSection />
+          <ContactSection />
+        </Suspense>
       </div>
       <Footer />
     </div>

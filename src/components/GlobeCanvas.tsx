@@ -1,14 +1,9 @@
 import { useEffect, useRef } from "react";
 
 // GeoJSON land: Natural Earth 110m — barcha qit'alar (Yevropa, Osiyo va b.) aniq qirg'oq
-const GEOJSON_LAND_URL =
-  "https://raw.githubusercontent.com/martynafford/natural-earth-geojson/master/110m/physical/ne_110m_land.json";
-// O'zbekiston davlat chegarasi (faqat UZB border)
-const UZBEKISTAN_BORDER_URL =
-  "https://raw.githubusercontent.com/glynnbird/countriesgeojson/master/uzbekistan.geojson";
-// Janubiy Koreya chegarasi (Natural Earth dan ISO_A2 === "KR" filtrlash)
-const COUNTRIES_110M_URL =
-  "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson";
+const GEOJSON_LAND_URL = "/geo/ne_110m_land.json";
+const UZBEKISTAN_BORDER_URL = "/geo/uzbekistan.geojson";
+const COUNTRIES_110M_URL = "/geo/ne_110m_countries.geojson";
 
 type GeoRing = number[][]; // [lng, lat][]
 type GeoPolygon = GeoRing[];

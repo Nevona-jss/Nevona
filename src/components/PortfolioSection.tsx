@@ -3,12 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, X } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
-import coverMes from "@/assets/Cover_MES.jpg";
-import coverIct from "@/assets/Cover_ICT.jpg";
-import coverAiCctv from "@/assets/Cover_AI CCTV.jpg";
-import coverModen from "@/assets/Cover_Moden.jpg";
-import coverCoffee from "@/assets/Cover_Coffee AI.jpg";
-import coverGroupware from "@/assets/Cover_Groupware.jpg";  
+import coverMes from "@/assets/Cover_MES.webp";
+import coverIct from "@/assets/Cover_ICT.webp";
+import coverAiCctv from "@/assets/Cover_AI CCTV.webp";
+import coverModen from "@/assets/Cover_Moden.webp";
+import coverCoffee from "@/assets/Cover_Coffee AI.webp";
+import coverGroupware from "@/assets/Cover_Groupware.webp";
 
 // Topskill, EUTAS, Intalim olib tashlandi — yangi loyihalar qo‘shish uchun shu yerga qo‘shing
 const projects = [
@@ -89,6 +89,7 @@ const PortfolioCard = ({
             src={project.cover}
             alt=""
             loading="lazy"
+            decoding="async"
             className="absolute inset-0 h-full w-full object-cover"
           />
         )}
@@ -174,7 +175,7 @@ const PortfolioSection = () => {
                 <div className="mb-4 flex items-start justify-between gap-4">
                   {selectedProject.cover && (
                     <div className="h-20 w-20 shrink-0 overflow-hidden rounded-xl">
-                      <img src={selectedProject.cover} alt="" loading="lazy" className="h-full w-full object-cover" />
+                      <img src={selectedProject.cover} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />
                     </div>
                   )}
                   <button
