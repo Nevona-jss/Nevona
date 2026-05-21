@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import Footer from "@/components/Footer";
 
+const WhyUsSection = lazy(() => import("@/components/WhyUsSection"));
 const ServicesSection = lazy(() => import("@/components/ServicesSection"));
 const PortfolioSection = lazy(() => import("@/components/PortfolioSection"));
 const TechStackSection = lazy(() => import("@/components/TechStackSection"));
@@ -52,6 +53,7 @@ const Index = () => {
           aria-hidden
         />
         <Suspense fallback={null}>
+          <WhyUsSection />
           <ServicesSection />
           <PortfolioSection />
           <TechStackSection />

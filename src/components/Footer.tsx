@@ -43,7 +43,7 @@ const Footer = () => {
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 400,
-                fontSize: "20px",
+                fontSize: "16px",
                 lineHeight: "20px",
                 letterSpacing: "0%",
                 color: "#FFFFFF",
