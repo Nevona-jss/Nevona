@@ -2,20 +2,20 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { useCountUp } from "@/hooks/useCountUp";
+// import { useCountUp } from "@/hooks/useCountUp";
 import ParticleCanvas from "@/components/ParticleCanvas";
 import GlobeCanvas from "@/components/GlobeCanvas";
 const heroBg = "/hero-bg.webp";
 
-const StatCounter = ({ end, suffix, label, duration = 2200 }: { end: number; suffix: string; label: string; duration?: number }) => {
-  const { ref, display } = useCountUp({ end, suffix, duration });
-  return (
-    <div ref={ref} className="text-center">
-      <div className="font-display text-3xl font-bold gradient-text">{display}</div>
-      <div className="mt-1 text-sm text-muted-foreground">{label}</div>
-    </div>
-  );
-};
+// const StatCounter = ({ end, suffix, label, duration = 2200 }: { end: number; suffix: string; label: string; duration?: number }) => {
+//   const { ref, display } = useCountUp({ end, suffix, duration });
+//   return (
+//     <div ref={ref} className="text-center">
+//       <div className="font-display text-3xl font-bold gradient-text">{display}</div>
+//       <div className="mt-1 text-sm text-muted-foreground">{label}</div>
+//     </div>
+//   );
+// };
 
 const HeroSection = () => {
   const { t } = useLanguage();
@@ -115,8 +115,8 @@ const HeroSection = () => {
           </motion.div>
         </div>
 
-        {/* Animated Stats */}
-        <motion.div
+        {/* Animated Stats — commented out, replaced by WhyUsSection */}
+        {/* <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -126,7 +126,7 @@ const HeroSection = () => {
           <StatCounter end={10} suffix="+" label={t("hero.stats.projects")} />
           <StatCounter end={5} suffix="+" label={t("hero.stats.techStacks")} />
           <StatCounter end={2024} suffix="" label={t("hero.stats.founded")} duration={2500} />
-        </motion.div>
+        </motion.div> */}
       </div>
 
       {/* Scroll indicator — hidden after user scrolls down */}
