@@ -261,7 +261,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     "contact.subtitle": "G'oya bormi? Muammo bormi? Yoki o'sish rejangiz bormi? Keling, uni birgalikda ishlaydigan raqamli mahsulotga aylantiramiz.",
     "contact.address": "Toshkent, O'zbekiston",
     "contact.addressDesc": "J-Smart Solution (Koreya Respublikasi) ning rasmiy filiali",
-    "contact.addressLine": "Shayxontohur tumani, Fidokor 30",
+    "contact.addressLine": "Mirabod tumani, Fidokor 30",
     "contact.mapTitle": "Xarita: NEVONA ofisi, Toshkent",
     "contact.telegram": "Telegram",
     "contact.linkedin": "LinkedIn",
